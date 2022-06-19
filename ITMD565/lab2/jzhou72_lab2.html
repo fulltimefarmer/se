@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lab 2: JavaScript Hello World</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// All lab code should be between these two comments
+
+	console.log("Max Zhou – jzhou2@hawk.iit.edu – Lab 2");
+	let name = window.prompt("What is your Name?", "");
+	if (name === '') {
+		let withoutName = "Hello World! You did not enter a name!";
+		alert(withoutName);
+		console.log(withoutName);
+	} else {
+		let withName = "Hello {name}!";
+		alert(withName.replace("{name}", name)); 
+		console.log(withName.replace("{name}", name));
+		let nameCount = "Your name has {count} characters.";
+		console.log(nameCount.replace("{count}", name.length));
+	}
+	
+	// All lab code should be between these two comments
+	</script>
+</body>
+</html>
