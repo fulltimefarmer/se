@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>A web page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/lab1.css">
+    </head>
+    <body>
+        <header>
+            <div>
+                <h4>ITMD 565 Lab 1 - Max Zhou - zhoujun9633@163.com</h4>
+            </div>
+            <div>
+                <h1>Sales Tax Calculator</h1>
+            </div>
+        </header>
+        <div class="content">
+            <div>
+                <form class="salesTaxForm" action="#" method="POST">
+                    <p class="notice">
+                        Enter Subtotal and Tax Rate and click the Calculate button to show the sales tax amount and the total. Click the clear button to clear out all form fields. Tax rate should be a percentage but do not enter a % sign in the tax rate box.
+                    </p>
+                    <div>
+                        <table class="inputTable" cellpadding="3">
+                            <tr>
+                                <td class="labelTd">
+                                    <label for="subtotal">Subtotal: </label>
+                                </td>
+                                <td>
+                                    <input type="number" class="width100" name="subtotal" id="subtotal">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTd">
+                                    <label for="taxRate">Tax Rate: </label>
+                                </td>
+                                <td>
+                                    <input type="number" class="width100" name="taxRate" id="taxRate">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTd">
+                                    <label for="salesTax">Sales Tax: </label>
+                                </td>
+                                <td>
+                                    <input type="number" class="width100" disabled name="salesTax" id="salesTax">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTd">
+                                    <label for="total">Total: </label>
+                                </td>
+                                <td>
+                                    <input type="number" class="width100" disabled name="total" id="total">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" class="formBtn" value="Calculate Tax and Total">
+                                    <input type="button" class="formBtn" value="Clear">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="imgContainer">
+                <img id="winterPic" alt="Winter is coming" src="images/tree.png">
+            </div>
+        </div>
+        <footer> &copy; 2022 Max Zhou | zhoujun9633@163.com </footer>
+    </body>
+</html>
