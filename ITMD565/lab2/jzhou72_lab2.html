@@ -16,11 +16,12 @@
 		alert(withoutName);
 		console.log(withoutName);
 	} else {
-		let withName = "Hello {name}!";
-		alert(withName.replace("{name}", name)); 
-		console.log(withName.replace("{name}", name));
-		let nameCount = "Your name has {count} characters.";
-		console.log(nameCount.replace("{count}", name.length));
+		let withName = `Hello ${name}!`;
+		alert(withName); 
+		console.log(withName);
+		let strLength = name.length;
+		let nameCount = `Your name has ${strLength} characters.`;
+		console.log(nameCount);
 	}
 	
 	// All lab code should be between these two comments
