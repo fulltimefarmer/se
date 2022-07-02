@@ -6,12 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>A web page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/lab1.css">
+        <link rel="stylesheet" href="css/lab3.css">
     </head>
     <body>
         <header>
             <div>
-                <h4>ITMD 565 Lab 1 - Max Zhou - jzhou72@hawk.iit.edu</h4>
+                <h4>ITMD 565 Lab 3 - Max Zhou - jzhou72@hawk.iit.edu</h4>
             </div>
             <div>
                 <h1>Sales Tax Calculator</h1>
@@ -30,7 +30,7 @@
                                     <label for="subtotal">Subtotal: </label>
                                 </td>
                                 <td>
-                                    <input type="number" class="width100" name="subtotal" id="subtotal">
+                                    <input id="subtotal" name="subtotal" type="number" class="width100" />
                                 </td>
                             </tr>
                             <tr>
@@ -38,7 +38,7 @@
                                     <label for="taxRate">Tax Rate: </label>
                                 </td>
                                 <td>
-                                    <input type="number" class="width100" name="taxRate" id="taxRate">
+                                    <input id="taxRate" name="taxRate" type="number" class="width100" />
                                 </td>
                             </tr>
                             <tr>
@@ -46,7 +46,7 @@
                                     <label for="salesTax">Sales Tax: </label>
                                 </td>
                                 <td>
-                                    <input type="number" class="width100" disabled name="salesTax" id="salesTax">
+                                    <input id="salesTax" name="salesTax" type="number" class="width100" disabled />
                                 </td>
                             </tr>
                             <tr>
@@ -54,14 +54,14 @@
                                     <label for="total">Total: </label>
                                 </td>
                                 <td>
-                                    <input type="number" class="width100" disabled name="total" id="total">
+                                    <input id="total" name="total" type="number" class="width100" disabled />
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td>
-                                    <input type="submit" class="formBtn" value="Calculate Tax and Total">
-                                    <input type="button" class="formBtn" value="Clear">
+                                    <input id="calculateBtn" type="button" class="formBtn" value="Calculate Tax and Total">
+                                    <input id="clearBtn" type="button" class="formBtn" value="Clear">
                                 </td>
                             </tr>
                         </table>
@@ -73,5 +73,75 @@
             </div>
         </div>
         <footer> &copy; 2022 Max Zhou | jzhou72@hawk.iit.edu </footer>
+
+        <script defer>
+
+            /**
+             * Handle click calculate button event.
+             *  1.Validate user input
+             *  2.Calculate salesTax&total
+             */
+            function handleCalculate(){
+                let subtotal = document.getElementById("subtotal");
+                let taxRate = document.getElementById("taxRate");
+
+                // start validate user input, stop and show message if input invalid.
+                let message = '';
+                if (isNaN(subtotal.value)) {
+                    message = 'Subtotal invalid, must be a number!';
+                    alert(message);
+                    return;
+                }
+                if (parseFloat(subtotal.value) <= 0) {
+                    message = 'Subtotal invalid, must be a positive number!';
+                    alert(message);
+                    return;
+                }
+                if (isNaN(taxRate.value)) {
+                    message = 'Tax Rate invalid, must be a number!';
+                    alert(message);
+                    return;
+                }
+                if (parseFloat(taxRate.value) > 20 || parseFloat(taxRate.value) <= 0) {
+                    message = 'Tax Rate invalid, must be a number greater than 0 and less than or equal to 20!';
+                    alert(message);
+                    return;
+                }
+                // end validation
+
+                // start calculate
+                let salesTax = document.getElementById("salesTax");
+                let total = document.getElementById("total");
+                salesTax.value = (parseFloat(subtotal.value) * parseFloat(taxRate.value) / 100).toFixed(2);
+                total.value = (parseFloat(subtotal.value) + parseFloat(salesTax.value)).toFixed(2);
+            }
+
+            /**
+             * Handle click clear button event.
+             *  1.Clear all input value to empty
+             *  2.Set focus on subtotal input
+             */
+            function handleClear(){
+                let subtotal = document.getElementById("subtotal");
+                subtotal.value = '';
+                subtotal.focus();
+                let taxRate = document.getElementById("taxRate");
+                taxRate.value = '';
+                let salesTax = document.getElementById("salesTax");
+                salesTax.value = '';
+                let total = document.getElementById("total");
+                total.value = '';
+            }
+
+            // Add click envet for calculateButton and clearButton.
+            document.addEventListener('DOMContentLoaded', function(){
+                let calculateBtn = document.getElementById('calculateBtn');
+                calculateBtn.addEventListener('click', handleCalculate);
+
+                let clearBtn = document.getElementById('clearBtn');
+                clearBtn.addEventListener('click', handleClear);
+            });
+
+        </script>
     </body>
 </html>
