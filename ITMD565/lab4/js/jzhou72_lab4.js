@@ -127,36 +127,116 @@ function handleSec4Btn1(){
 function handleSec4Btn2(){
     let sec4contentarea = document.getElementById('sec4-contentarea');
     let sec4boxes = sec4contentarea.getElementsByTagName('div');
-    console.log(sec4boxes.length);
-    for (let i = 0; i < sec4contentarea.length; i++) {
+    for (let i = sec4boxes.length - 1; i >= 0; i--) {
+        console.log(i);
         sec4contentarea.removeChild(sec4boxes[i]);
     }
 }
 
 
-
-
-
 // Section 5
+document.addEventListener('DOMContentLoaded', function(){
+    let sec5input = document.getElementById('sec5-input');
+    let sec5contentarea = document.getElementById('sec5-contentarea');
+    let span = document.createElement('span');
+    span.style.fontWeight='bold';
+    span.style.fontSize = '60px';
+    span.style.margin = '160px';
+    sec5contentarea.appendChild(span);
+    sec5input.addEventListener('keypress', (event) => {
+        const keyName = event.key;
+        span.textContent = keyName;
+    }, false);
 
-
-
-
-
-
-
+    sec5input.addEventListener('keyup', (event) => {
+        sec5input.value = '';
+    }, false);
+});
 
 
 // Section 6
+document.addEventListener('DOMContentLoaded', function(){
+    let sec6btn1 = document.getElementById('sec6-btn1');
+    let sec6btn2 = document.getElementById('sec6-btn2');
+    sec6btn1.addEventListener('click', handleSec6Btn1);
+    sec6btn2.addEventListener('click', handleSec6Btn2);
+})
 
+function handleSec6Btn1(){
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(function(resp){
+            return resp.json();
+        })
+        .then(function(json){
+            let sec6contentarea = document.getElementById('sec6-contentarea');
+            let table = document.createElement('table');
+            for(let i = 0; i < json.length; i++) {
+                let row = document.createElement('tr');
+                let cellName = document.createElement('td');
+                let textName = document.createTextNode(json[i].name);
+                cellName.appendChild(textName);
+                row.appendChild(cellName);
+                let cellEmail = document.createElement('td');
+                let textEmail = document.createTextNode(json[i].email);
+                cellEmail.appendChild(textEmail);
+                row.appendChild(cellEmail);
+                table.appendChild(row);
+            }
+            sec6contentarea.appendChild(table);
+        });
+    let sec6btn1 = document.getElementById('sec6-btn1');
+    sec6btn1.disabled = true;
+}
 
-
-
-
-
-
-
-
+function handleSec6Btn2(){
+    let sec6contentarea = document.getElementById('sec6-contentarea');
+    let sec6table = sec6contentarea.getElementsByTagName('table')[0];
+    sec6contentarea.removeChild(sec6table);
+    let sec6btn1 = document.getElementById('sec6-btn1');
+    sec6btn1.disabled = false;
+}
 
 
 // Section 7
+document.addEventListener('DOMContentLoaded', function(){
+    let sec7btn1 = document.getElementById('sec7-btn1');
+    let sec7btn2 = document.getElementById('sec7-btn2');
+    sec7btn1.addEventListener('click', handleSec7Btn1);
+    sec7btn2.addEventListener('click', handleSec7Btn2);
+})
+
+function handleSec7Btn1(){
+    let ajaxReq = new XMLHttpRequest();
+    ajaxReq.onreadystatechange = function(){
+        if (ajaxReq.readyState === 4 && ajaxReq.status === 200) {
+            let sec7contentarea = document.getElementById('sec7-contentarea');
+            let resp = JSON.parse(ajaxReq.responseText);
+            let table = document.createElement('table');
+            for(var i = 0; i < resp.length; i++) {
+                let row = document.createElement('tr');
+                let cellName = document.createElement('td');
+                let textName = document.createTextNode(resp[i].name);
+                cellName.appendChild(textName);
+                row.appendChild(cellName);
+                let cellEmail = document.createElement('td');
+                let textEmail = document.createTextNode(resp[i].email);
+                cellEmail.appendChild(textEmail);
+                row.appendChild(cellEmail);
+                table.appendChild(row);
+            }
+            sec7contentarea.appendChild(table);
+        }
+    }
+    ajaxReq.open('GET', 'https://jsonplaceholder.typicode.com/users');
+    ajaxReq.send();
+    let sec7btn1 = document.getElementById('sec7-btn1');
+    sec7btn1.disabled = true;
+}
+
+function handleSec7Btn2(){
+    let sec7contentarea = document.getElementById('sec7-contentarea');
+    let sec7table = sec7contentarea.getElementsByTagName('table')[0];
+    sec7contentarea.removeChild(sec7table);
+    let sec7btn1 = document.getElementById('sec7-btn1');
+    sec7btn1.disabled = false;
+}
