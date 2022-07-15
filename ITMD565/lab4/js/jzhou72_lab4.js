@@ -48,6 +48,8 @@ document.addEventListener('DOMContentLoaded', function(){
     let sec3Btn2 = document.getElementById('sec3-btn2');
     let sec3input = document.getElementById('sec3-input');
     let sec3contentarea = document.getElementById('sec3-contentarea');
+    let sec3p = document.createElement('p');
+    sec3contentarea.appendChild(sec3p);
     sec3Btn1.addEventListener('click', function(){
         let celsius = sec3input.value;
         if (celsius === '') {
@@ -59,14 +61,11 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         }
         let fahrenheit = parseFloat(celsius) * 1.8 + 32;
-        let sec3p = document.createElement('p');
         sec3p.textContent = `${celsius} degress celsius is equal to  ${fahrenheit} degress fahrenheit`;
-        sec3contentarea.appendChild(sec3p);
         sec3input.value = '';
     });
     sec3Btn2.addEventListener('click', function(){
-        let sec3p = sec3contentarea.getElementsByTagName('p')[0];
-        sec3contentarea.removeChild(sec3p);
+        sec3p.textContent = '';
     });
     // End Section 3
 
@@ -95,10 +94,7 @@ document.addEventListener('DOMContentLoaded', function(){
             box.style.width = '60px';
             box.style.height = '60px';
             box.onmouseover = function() {
-                box.style.background = 'grey';
-            }
-            box.onmouseleave = function() {
-                box.style.background = color;
+                box.style.cursor = 'pointer';
             }
             box.addEventListener('click', function(){
                 sec4contentarea.removeChild(box);
