@@ -101,6 +101,8 @@ document.addEventListener('DOMContentLoaded', function(){
             });
             sec4contentarea.appendChild(box);
         }
+        sec4input1.value = "";
+        sec4select1.selectedIndex = 0;
     });
     sec4Btn2.addEventListener('click', function(){
         let sec4boxes = sec4contentarea.getElementsByTagName('div');
